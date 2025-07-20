@@ -1,0 +1,25 @@
+services:
+    ecommerce-api:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            # NOTE: HOST_PORT:CONTAINER_PORT, this maps the container's port 3151 to the host's port 3151
+            - "3151:3151"
+        volumes:
+            - .:/app
+            - /app/node_modules
+            - ./ecommerce.db:/app/ecommerce.db
+        env_file:
+            - .env
+        environment:
+            - NODE_ENV=development
+            # NOTE: This is the port the API will run on inside the container, do not change this unless you change the Dockerfile
+            - PORT=3151
+        command: npm run start:dev
+        healthcheck:
+            test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3151/health"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s

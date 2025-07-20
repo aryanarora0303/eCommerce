@@ -1,0 +1,10 @@
+# Generated files
+openapi-spec.json
+test-report.html
+test-report-*.html
+
+# Temporary newman files
+*.tmp
+
+# Answer files, remove later
+postman-collection.json
