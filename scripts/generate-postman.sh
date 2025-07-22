@@ -29,8 +29,8 @@ fi
 echo "✅ API is running successfully!"
 
 # Download OpenAPI specification
-echo "� Downloading OpenAPI specification..."
-if ! curl -sf "$API_URL$OPENAPI_ENDPOINT" -o "postman-collection-openapi.json"; then
+echo "📥 Downloading OpenAPI specification..."
+if ! curl -sf "$API_URL$OPENAPI_ENDPOINT" -o "$POSTMAN_DIR/postman-collection-openapi.json"; then
     echo "❌ Error: Could not download OpenAPI specification"
     echo "   Make sure the API is running and OpenAPI documentation is available"
     exit 1
